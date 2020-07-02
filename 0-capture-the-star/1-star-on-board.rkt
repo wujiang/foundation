@@ -15,3 +15,5 @@
          [x (cal-location size r)]
          [y (cal-location size (- 9 f))])
     (place-image st x y cb)))
+
+(provide star-on-chessboard)
