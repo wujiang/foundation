@@ -2,6 +2,8 @@
 (require 2htdp/image)
 (require "0-chessboard.rkt")
 
+; Number Number -> loc
+; a 2d point structure
 (struct loc (r f))
 
 ; Number Number -> Number
@@ -9,7 +11,7 @@
 (define (cal-location size n)
   (- (* size n) (/ size 2)))
 
-; Number Number Number -> Pict
+; Number loc -> Pict
 ; draw a chessboard and place a star on it
 (define (star-on-chessboard size loc)
   (let* ([cb (chessboard size)]

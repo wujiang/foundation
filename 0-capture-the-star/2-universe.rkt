@@ -4,14 +4,14 @@
 
 (require "1-star-on-board.rkt")
 
-; Number -> Pict
+; loc -> Pict
 ; the procedure for animate
-(define (create-chessboard point)
-  (star-on-chessboard 40 point))
+(define (create-chessboard l)
+  (star-on-chessboard 40 l))
 
-; Number -> Number
+; loc -> loc
 ; move the star t a random location
-(define (move-star p)
+(define (move-star l)
   (loc (random 8) (random 8)))
 
 ; a world
