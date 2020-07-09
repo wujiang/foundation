@@ -4,6 +4,12 @@
 
 (require "1-star-on-board.rkt")
 
+; Integer Integer -> Integer
+; given a location, caluculate the index (rank/file)
+; it lands on a checkerboard
+(define (coordinate-to-idx size x)
+  (+ 1 (quotient x size)))
+
 ; loc -> Pict
 ; the procedure for animate
 (define (create-chessboard l)
