@@ -4,7 +4,7 @@
 
 ; Number Number -> loc
 ; a 2d point structure
-(struct loc (r f))
+(struct loc (x y) #:transparent)
 
 ; Number Number -> Number
 ; calculate a location based on square's size and file/rank
@@ -16,8 +16,8 @@
 (define (star-on-chessboard size loc)
   (let* ([cb (chessboard size)]
          [st (star (/ size 2) "solid" "yellow")]
-         [x (cal-location size (loc-r loc))]
-         [y (cal-location size (- 9 (loc-f loc)))])
+         [x (cal-location size (loc-x loc))]
+         [y (cal-location size (loc-y loc))])
     (place-image st x y cb)))
 
 (provide star-on-chessboard loc)
