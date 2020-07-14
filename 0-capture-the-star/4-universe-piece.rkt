@@ -1,9 +1,21 @@
 #lang racket
-
 (require racket/format 2htdp/image 2htdp/universe)
 (require "3-star-piece-on-board.rkt")
 
+; the size of each sqare on a chessboard
 (define square-size 100)
+
+; list all the allowed pieces
+(define allowed-pieces (list "white-rook"
+                             ; "white-pawn"
+                             ; "white-bishop"
+                             "white-knight"
+                             "white-queen"))
+; pick a random piece
+(define (pick-a-piece)
+  (list-ref allowed-pieces (random (length allowed-pieces))))
+
+; define the data type for the game
 (struct board-state (star-loc piece piece-loc score))
 
 ; Integer Integer -> Integer
@@ -11,14 +23,6 @@
 ; it lands on a checkerboard
 (define (coordinate-to-idx size x)
   (+ 1 (quotient x size)))
-
-(define allowed-pieces (list "white-rook"
-                             "white-pawn"
-                             ; "white-bishop"
-                             "white-knight"
-                             "white-queen"))
-(define (pick-a-piece)
-  (list-ref allowed-pieces (random (length allowed-pieces))))
 
 ; loc -> Pict
 ; the procedure for animate
@@ -32,7 +36,6 @@
                                       (board-state-piece s)
                                       (board-state-piece-loc s)))))
 
-
 ; loc Number Number MouseEvent -> loc
 ; mouse event handler
 (define (move-star-to s x y e)
@@ -40,12 +43,12 @@
         [piece-loc-x (coordinate-to-idx square-size x)]
         [piece-loc-y (coordinate-to-idx square-size y)]
         [piece-loc (loc piece-loc-x piece-loc-y)]
-        [captured (equal? star-loc piece-loc)]
-        [new-score (if captured 1 0)]
-        [star-new-loc (if captured
+        [captured? (equal? star-loc piece-loc)]
+        [new-score (if captured? 1 0)]
+        [star-new-loc (if captured?
                           (loc (+ 1 (random 8)) (+ 1 (random 8)))
                           star-loc)]
-        [new-piece (if captured (pick-a-piece) (board-state-piece s))])
+        [new-piece (if captured? (pick-a-piece) (board-state-piece s))])
     (cond [(mouse=? e "button-down")
            (board-state star-new-loc
                         new-piece

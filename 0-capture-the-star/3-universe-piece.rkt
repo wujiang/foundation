@@ -1,6 +1,6 @@
 #lang racket
 
-(require 2htdp/image 2htdp/universe chess/pict chess/piece)
+(require 2htdp/image 2htdp/universe)
 
 (require "3-star-piece-on-board.rkt")
 
@@ -33,6 +33,6 @@
         [else s]))
 
 ; a world
-(big-bang (board-state (loc 1 1) white-rook (loc 2 2))
+(big-bang (board-state (loc 1 1) "white-rook" (loc 2 2))
           (to-draw create-chessboard)
           (on-mouse move-star-to))
