@@ -1,6 +1,6 @@
 #lang racket
 (require racket/format 2htdp/image 2htdp/universe)
-(require "3-star-piece-on-board.rkt")
+(require "4-star-piece-on-board.rkt")
 
 ; the size of each sqare on a chessboard
 (define square-size 100)

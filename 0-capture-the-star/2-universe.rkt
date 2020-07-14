@@ -15,8 +15,6 @@
 (define (create-chessboard l)
   (star-on-chessboard 100 l))
 
-(struct board-state (star-loc piece piece-loc))
-
 ; loc -> loc
 ; move the star t a random location
 (define (move-star l)
@@ -30,7 +28,7 @@
         [else l]))
 
 ; a world
-(big-bang (board-state (loc 1 1) white-rook (loc 2 2))
+(big-bang (loc 1 1)
   (to-draw create-chessboard)
   ; (on-tick move-star)
   (on-mouse move-star-to))
